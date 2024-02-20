@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: goph420_lab01
+Version: 0.0.1
+Summary: Lab 1: Numerical Integration
+Author-email: Angel Ramos <modesto.ramoshernand@ucalgary.ca>
+Project-URL: Homepage, https://github.com/AngelRamos25/goph420_w2024_lab01_stAR.git
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+
+# GOPH 420 - Inversion and Parameter Estimation for Geophysicists.
+# Semester: W2023
+# Instructor: B. Karchewski
+# Author: Angel Ramos
+
+# Description: First laboratory of GOPH 420.
+# Numerical Integration.
