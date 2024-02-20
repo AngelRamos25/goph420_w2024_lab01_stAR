@@ -1,2 +1,7 @@
-# goph420_w2024_lab01_stAR
-GOPH 420: Laboratory 1.
+# GOPH 420 - Inversion and Parameter Estimation for Geophysicists.
+# Semester: W2023
+# Instructor: B. Karchewski
+# Author: Angel Ramos
+
+# Description: First laboratory of GOPH 420.
+# Numerical Integration.
