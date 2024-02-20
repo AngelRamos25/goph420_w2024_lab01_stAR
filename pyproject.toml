@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "goph420_lab01"
+version = "0.0.1"
+authors = [
+{ name="Angel Ramos", email="modesto.ramoshernand@ucalgary.ca" },
+]
+description="Lab 1: Numerical Integration"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+"numpy",
+"matplotlib",
+]
+classifiers = [
+"Programming Language :: Python :: 3",
+"Operating System :: OS Independent",
+"License :: OSI Approved :: GNU General Public License v3",
+]
+[project.urls]
+"Homepage" = "https://github.com/AngelRamos25/goph420_w2024_lab01_stAR.git"
