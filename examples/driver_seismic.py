@@ -1,5 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
+from goph420_lab01 import integration as Intg
 
 dt = 0.01  # Time sampling in seconds.
 t, v = np.loadtxt('s_wave_data.txt', float, unpack=True)
@@ -33,11 +34,11 @@ v = (1/T)*v[0:index]**2
 
 N = len(v)
 
-# Trapezoid rule:
+# Newton-Cotes methos:
 
-I = integrate_newton(t, v, 'trap')
+I = Intg.integrate_newton(t, v, 'trap')
 print(I)
-I1 = integrate_newton(t, v, 'simp3/8')
+I1 = Intg.integrate_newton(t, v, 'simp1/3')
 print(I1)
-
-# 1/3 Simpson rule
+I2 = Intg.integrate_newton(t, v, 'simp3/8')
+print(I2)
