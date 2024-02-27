@@ -86,6 +86,6 @@ def plot_err_conv(t, v, index):
     return [E_trap[-1], E_simp1[-1], E_simp3[-1]]
 
 
-if __name__ == '__main__':
-    index = plot_raw_data(t, v)
-    E = plot_err_conv(t, v, index)
+# if __name__ == '__main__':
+index = plot_raw_data(t, v)
+E = plot_err_conv(t, v, index)
