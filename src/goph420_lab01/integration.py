@@ -97,7 +97,7 @@ def integrate_gauss(
     ValueError if npts is not in [1, 2, 3, 4, 5].
     """
 
-    if callable(f) == False:
+    if callable(f) is False:
         raise ValueError(
             "f is not calleable"
         )
