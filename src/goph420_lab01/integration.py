@@ -68,11 +68,11 @@ class GaussDist:
 
     def __call__(self, x):
         z = np.subtract(x, self.mu)/self.sigma
-        f = (1/(np.sqrt(2*np.pi))) * np.exp(-z**2/2)
+        f = (1/(np.sqrt(2*np.pi*self.sigma**2))) * np.exp((-z**2) / 2)
         return f
 
 
-def integration_gauss(
+def integrate_gauss(
         f,
         lims: float,
         npts: int = 3):
@@ -97,20 +97,23 @@ def integration_gauss(
     ValueError if npts is not in [1, 2, 3, 4, 5].
     """
 
-    callable(f)
+    if callable(f) == False:
+        raise ValueError(
+            "f is not calleable"
+        )
 
-    options = [1, 2, 3, 4, 5]
+    options = [2, 3, 4, 5]
     if npts not in options:
         raise ValueError(
             "npts is not in [1, 2, 3, 4, 5]"
         )
-    elif len(lims) != 2:
+    if len(lims) != 2:
         raise ValueError(
             "Not enough or too many values on lims."
 
         )
-    lims[0] = float(lims[0])
-    lims[1] = float(lims[1])
+    float(lims[0])
+    float(lims[1])
 
     if npts == 2:
         ck = [1, 1]
