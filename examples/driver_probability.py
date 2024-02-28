@@ -12,4 +12,4 @@ lims = [0, 1]
 npts = 3
 
 print(x)
-fx = Itg.integration_gauss(A, lims, npts)
+fx = Itg.integrate_gauss(A, lims, npts)
