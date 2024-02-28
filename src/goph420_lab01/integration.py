@@ -7,13 +7,13 @@ def integrate_newton(
         alg: str = 'trap') -> any:
     """ Newton-cotes methods:
     This function performs a numerical integration using either trapezoidal rule (trap),
-    1/3 Simpson's rule (simp1/3), or 3/8 Simpson's rule (simp3/8)
+    1/3 Simpson's rule (simp1/3), and 3/8 Simpson's rule (simp3/8)
 
     Inputs:
     ---------------
     x: x points where f(x) is evaluated or measured.
     f: value f(x)
-    alg: type of algorithm desires. 'trap' = trapezoidal rule, 'simp1/3' = 1/3 Simpson's rule, and 'simp3/8' Simpson's 3/8 rule.
+    alg: type of algorithm desires. 'trap' = trapezoidal rule, 'simp' = Simpson's rule and Simpson's 3/8 rule.
 
     Outputs:
     ---------------
@@ -26,7 +26,7 @@ def integrate_newton(
     """
 
     alg = alg.lower().strip()
-    options = ['trap', 'simp1/3', 'simp3/8']
+    options = ['trap', 'simp']
     if alg not in options:
         raise ValueError(
             "Not valid method, please select an option from the following list: trap, simp1/3, or simp3/8."
@@ -42,21 +42,36 @@ def integrate_newton(
     dx = x[1] - x[0]
 
     if alg == 'trap':
-
         A = (dx/2)*(f[0] + 2*sum(f[1:Nf-2]) + f[Nf-1])
 
-    elif alg == 'simp1/3':
+    if alg == 'simp':
+        if Nf == 2:
+            raise ValueError(
+                "Simpsons rule requieres at least 3 points."
+            )
 
-        evenN = range(2, Nf-1, 2)
-        oddN = range(1, Nf-1, 2)
-        A = (dx/3)*(f[0] + 4*sum(f[oddN]) + 2*sum(f[evenN]) + f[Nf-1])
+        if (Nf % 2 == 0 and Nf == 4):
 
-    elif alg == 'simp3/8':
+            A = (3*dx/8)*(f[0] + 3*f[1] + 3*f[2] + f[3])
 
-        threeN = np.arange(3, Nf-1, 3)
-        restN = np.arange(1, Nf-1, 1)
-        restN = np.delete(restN, threeN-1)
-        A = (3*dx/8)*(f[0] + 3*sum(f[restN]) + 2*sum(f[threeN]) + f[Nf-1])
+        elif (Nf % 2 == 0 and Nf > 4):
+
+            A = (3*dx/8)*(f[0] + 3*f[1] + 3*f[2] + f[3])
+            fm = f[3:-1]
+            evenN = range(2, len(fm)-1, 2)
+            oddN = range(1, len(fm)-1, 2)
+            A = A + (dx/3)*(fm[0] + 4*sum(fm[oddN]) +
+                            2*sum(fm[evenN]) + fm[-1])
+
+        if (Nf % 2 == 1 and Nf == 3):
+
+            A = (dx/3)*(f[0] + 4*f[1] + f[2])
+
+        elif (Nf % 2 == 1 and Nf > 3):
+
+            evenN = range(2, Nf-1, 2)
+            oddN = range(1, Nf-1, 2)
+            A = (dx/3)*(f[0] + 4*sum(f[oddN]) + 2*sum(f[evenN]) + f[-1])
 
     return A
 
