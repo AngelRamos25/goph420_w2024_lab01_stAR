@@ -38,7 +38,6 @@ def integrate_newton(
         raise ValueError(
             "Different lenghts on vectors x and f(x), please make sure these vectors have same lenght."
         )
-
     dx = x[1] - x[0]
 
     if alg == 'trap':
