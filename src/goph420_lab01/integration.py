@@ -112,11 +112,11 @@ def integrate_gauss(
     """
 
     if callable(f) is False:
-        raise ValueError(
+        raise TypeError(
             "f is not calleable"
         )
 
-    options = [2, 3, 4, 5]
+    options = [1, 2, 3, 4, 5]
     if npts not in options:
         raise ValueError(
             "npts is not in [1, 2, 3, 4, 5]"
@@ -129,26 +129,48 @@ def integrate_gauss(
     float(lims[0])
     float(lims[1])
 
+    if npts == 1:
+        ck = 2
+        sk = 0
     if npts == 2:
         ck = [1, 1]
-        sk = [-0.577350269, 0.577350269]
+        sk = [-1/np.sqrt(3), 1/np.sqrt(3)]
 
     elif npts == 3:
-        ck = [0.5555556, 0.8888889, 0.5555556]
-        sk = [-0.774596669, 0, 0.774596669]
+        ck = [5/9, 8/9, 5/9]
+        sk = [-np.sqrt(3/5), 0, np.sqrt(3/5)]
     elif npts == 4:
-        ck = [0.3478548, 0.6521452, 0.6521452, 0.3478548]
-        sk = [-0.861136312, -
-              0.339981044, 0.339981044, 0.861136312]
+        ck = [(18-np.sqrt(30))/36, (18+np.sqrt(30))/36,
+              (18+np.sqrt(30))/36, (18-np.sqrt(30))/36]
+        sk = [-(np.sqrt(3/7 + (2/7)*np.sqrt(6/5))), -(np.sqrt(3/7 - (2/7)*np.sqrt(6/5))),
+              (np.sqrt(3/7 - (2/7)*np.sqrt(6/5))), (np.sqrt(3/7 + (2/7)*np.sqrt(6/5)))]
     elif npts == 5:
-        ck = [0.2369269, 0.4786287,
-              0.5688889, 0.4786287,  0.2369269]
-        sk = [-0.932469514, -0.661209386,
-              0.238619186, 0.661209386, 0.932469514]
+        ck = [(322 - 13*np.sqrt(70))/900, (322 + 13*np.sqrt(70))/900,
+              128/225, (322 + 13*np.sqrt(70))/900,  (322 - 13*np.sqrt(70))/900]
+        sk = [-(1/3)*(np.sqrt(5 + 2*np.sqrt(10/7))), -(1/3)*(np.sqrt(5 - 2*np.sqrt(10/7))),
+              0, (1/3)*(np.sqrt(5 - 2*np.sqrt(10/7))), (1/3)*(np.sqrt(5 + 2*np.sqrt(10/7)))]
 
     wk = np.multiply((lims[1] - lims[0])/2, ck)
     xk = (lims[0] + lims[1])/2 + np.multiply((lims[1] - lims[0])/2, sk)
     fk = f(xk)
-    I = sum(np.multiply(wk, fk))
+    I = np.sum(np.multiply(wk, fk))
 
     return I
+
+
+class Polyn:
+    def __init__(self, npts):
+        self.npts = npts
+
+    def __call__(self, x):
+        if self.npts == 1:
+            fx = x + 1
+        if self.npts == 2:
+            fx = x**3 + x**2 + x + 1
+        if self.npts == 3:
+            fx = x**5 + x**4 + x**3 + x**2 + x + 1
+        if self.npts == 4:
+            fx = x**7 + x**6 + x**5 + x**4 + x**3 + x**2 + x + 1
+        if self.npts == 5:
+            fx = x**9 + x**8 + x**7 + x**6 + x**5 + x**4 + x**3 + x**2 + x + 1
+        return fx
