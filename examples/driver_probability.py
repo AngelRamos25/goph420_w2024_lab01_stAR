@@ -6,6 +6,8 @@ from goph420_lab01 import integration as Itg
 
 # 8. i
 
+# Calculates probability for event 1) using Gauss quadrature methos:
+
 
 def probability_event_1():
 
@@ -30,12 +32,16 @@ def probability_event_1():
     plt.xlabel("Number of points (n)")
     plt.ylabel("Absolute relative error.")
     plt.grid(min)
-    plt.savefig(
-        'C:/Users/mange/Desktop/UoC/Winter 2024/GOPH_420/goph420_w2024_lab01_stAR/figures/Q1_Gauss.pdf')
+
+    # Saving image. This section is commented since it could be an error if run in other computer.
+    # plt.savefig(
+    #    'C:/Users/mange/Desktop/UoC/Winter 2024/GOPH_420/goph420_w2024_lab01_stAR/figures/Q1_Gauss.pdf')
     plt.show()
     return (P)
 
 # 8. ii
+
+# Calculates probability for event 2) using Gauss quadrature methos:
 
 
 def probability_event_2():
@@ -57,6 +63,8 @@ def probability_event_2():
     plt.xlabel("Number of points (n)")
     plt.ylabel("Approximate relative error.")
     plt.grid(min)
+
+    # Saving image. This section is commented since it could be an error if run in other computer.
     plt.savefig(
         'C:/Users/mange/Desktop/UoC/Winter 2024/GOPH_420/goph420_w2024_lab01_stAR/figures/Q2_Gauss.pdf')
     plt.show()
