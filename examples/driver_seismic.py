@@ -55,8 +55,7 @@ def plot_convergence_error(t, v, index):
 
         trap[x] = Itg.integrate_newton(tT, vT, 'trap')
         simp1[x] = Itg.integrate_newton(tT, vT, 'simp')
-        print([trap[x], simp1[x]])
-
+    print(simp1)
     E_trap = np.zeros(Ns-1)
     E_simp1 = np.zeros(Ns-1)
 
